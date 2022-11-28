@@ -1,11 +1,11 @@
 ﻿#pragma once
-//size of table
+
 
 template <typename T>
 class hash_table : public Person
 {
+    //size of table
     static const T TABLE_SIZE = 10;
-
 public:
     size_t HashFunction(std::string name);
     void InitializeHashTable();
@@ -15,15 +15,13 @@ public:
     Person* Delete(std::string name);
     
     // Hashtable: Array of Person pointers
-    Person* HashTable[TABLE_SIZE];
+    Person* HashTable[TABLE_SIZE] = { nullptr };
 };
 
 template <typename T>
 size_t hash_table<T>::HashFunction(std::string name)
 {
-    size_t Length;
-    
-    Length = name.length(); 
+    const size_t Length = name.length(); 
     size_t HashValue = 0;
     
     for (size_t i = 0; i < Length; i++)
@@ -76,7 +74,7 @@ bool hash_table<T>:: Insert(Person* person)
 {
     if (person == nullptr) return  false;
     // Get index by using hashfunc
-    int index = HashFunction(person->Name);
+    size_t index = HashFunction(person->Name);
     // If index is occupied
     person->Next = HashTable[index];
     HashTable[index] = person;
@@ -86,7 +84,7 @@ bool hash_table<T>:: Insert(Person* person)
 template <typename T>
 Person* hash_table<T>::Lookup(std::string name)
 {
-    int index = HashFunction(name);
+    size_t index = HashFunction(name);
     Person* Temp = HashTable[index];
     while (Temp != nullptr && Temp->Name != name)
     {
@@ -98,7 +96,7 @@ Person* hash_table<T>::Lookup(std::string name)
 template <typename T>
 Person* hash_table<T>:: Delete(std::string name)
 {
-    int index = HashFunction(name);
+    size_t index = HashFunction(name);
     Person* Temp = HashTable[index];
     Person* Prev = nullptr;
     

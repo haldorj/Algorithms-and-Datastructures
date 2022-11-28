@@ -29,7 +29,7 @@ int main()
     Table->Insert(&Jane);
     Table->Insert(&Steven);
     Table->Insert(&Edna);
-    Table-> Insert(&Maren);
+    Table->Insert(&Maren);
     Table->Insert(&Eliza);
     Table->Insert(&George);
 
