@@ -6,7 +6,7 @@
 
 int main()
 {
-    hash_table<int>* Table = new hash_table<int>;
+    hash_table* Table = new hash_table;
     
     Table->InitializeHashTable();
     Table->PrintTable();
