@@ -60,7 +60,4 @@ int main()
 	}
 	std::cout << std::endl;
 	graph.Dijkstra(graph.FindNode('A'), graph.FindNode('D'));
-
-	std::cout << graph.mst() << std::endl;
 }
-

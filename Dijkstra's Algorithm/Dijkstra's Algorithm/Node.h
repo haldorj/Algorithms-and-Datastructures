@@ -7,7 +7,7 @@ struct Node
     std::list<struct Edge> m_Edges;
 
 	Node(char name);
-	void InsertEdge(const Edge& edge);
+	void InsertEdge(const Edge& edge); // Insert an edge into the node
 };
 
 Node::Node(char name)

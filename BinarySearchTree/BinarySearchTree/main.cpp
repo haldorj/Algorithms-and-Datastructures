@@ -21,6 +21,7 @@ int main()
 
     std::cout << "Printing the tree in order" << std::endl;
     std::cout << "Before adding numbers" << std::endl;
+    Tree->PrintInOrder();
 
     for (int i = 0; i < Size; i++)
     {

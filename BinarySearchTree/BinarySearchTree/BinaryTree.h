@@ -428,11 +428,11 @@ void BinaryTree<T>::RemoveSubtree(Node<T>* ptr)
 {
     if (ptr != nullptr)
     {
-        if (ptr->Left != nullptr)
+        if(ptr->Left != nullptr)
         {
             RemoveSubtree(ptr->Left);
         }
-        if (ptr->Right != nullptr)
+        if(ptr->Right != nullptr)
         {
             RemoveSubtree(ptr->Right);
         }

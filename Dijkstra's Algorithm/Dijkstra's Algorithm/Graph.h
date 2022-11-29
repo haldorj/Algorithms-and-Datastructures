@@ -23,10 +23,12 @@ Node* Graph::FindNode(char name)
 	}
 	return nullptr;
 }
+
 void Graph::InsertNode(char name) 
 {
 	Nodes.push_back(new Node(name)); 
 }
+
 void Graph::InsertEdge(char from_name, char to_name, float distance)
 {
 	Node* from = nullptr;
@@ -41,29 +43,10 @@ void Graph::InsertEdge(char from_name, char to_name, float distance)
 	if (from && to)
 		from->InsertEdge({ distance, to });
 }
-float Graph::mst() // Prim
-{
-	float sum{};
-	std::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>> apq;
-	apq.emplace(0.f, Nodes.front());
-	do
-	{
-		auto edge = apq.top();
-		auto node = edge.m_ToNode;
-		apq.pop();
-		if (!node->m_Visited)
-		{
-			sum += edge.m_Distance;
-			node->m_Visited = true;
-			std::cout << edge.m_ToNode->m_Name;
-			for (auto& kant : node->m_Edges)
-				apq.push(kant);
-		}
-	} while (!apq.empty());
-	return sum;
-}
+
 Path Graph::Dijkstra(Node* start, Node* end)
 {
+	// Ascending priority queue
 	std::priority_queue<Path, std::vector<Path>, std::greater<Path>> APQ;
 	std::vector<Node*> visited;
 	// setup
