@@ -15,6 +15,7 @@ int main()
     Slink.AddToTail("Steven");
     Slink.AddToTail("Rose");
     Slink.AddToTail("John");
+    Slink.PrintData();
     Slink.RemoveAtHead();
     Slink.PrintData();
     Slink.RemoveAt(2);
@@ -30,11 +31,11 @@ int main()
     Slink.PrintData();
     std::cout << "Number of elements: " << Slink.GetNumberOfElements() << std::endl;
 
-    Slink.SelectionSort(Slink);
+    //Slink.SelectionSort(Slink);
     //Slink.BubbleSort(Slink);
     //Slink.MergeSort(Slink);
     //Slink.QuickSort(Slink);
-    //Slink.HeapSort(Slink);
+    Slink.HeapSort(Slink);
     
     std::cout << "Printing list after sorting: " << std::endl;
     Slink.PrintData();

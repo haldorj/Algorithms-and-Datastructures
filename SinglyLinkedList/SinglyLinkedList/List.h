@@ -24,13 +24,14 @@ public:
     void PrintData();
     void InsertAt(int index, T data);
     void RemoveAt(int index);
-    Node<T>* FindNodeSpecific(int index);
     void RemoveAtHead();
     void RemoveAtTail();
-    const T& operator[](size_t index) const;
-    T& operator[](size_t index);
+	void RemoveDuplicates();
+
+	Node<T>* FindNodeSpecific(size_t index);
+
     size_t GetNumberOfElements() const { return NumberOfElements; }
-    
+
     // Sorting
     void SelectionSort(List<T>& list);
     void BubbleSort(List<T>& list);
@@ -47,6 +48,11 @@ private:
     int Partition(List<T>& list, int low, int high);
 	
 	void Heapify(List<T>& list, int length, int i);
+	
+	void SwapNodes(T left, T right); // Swaps the actual nodes in the linked list (not values).
+	
+	const T& operator[](size_t index) const;
+	T& operator[](size_t index);
 };
 
 template<typename T>
@@ -170,7 +176,7 @@ void List<T>::RemoveAt(int index)
 }
 
 template <typename T>
-Node<T>* List<T>::FindNodeSpecific(int index)
+Node<T>* List<T>::FindNodeSpecific(size_t index)
 {
     Node<T>* p = Head;
     int i = 0;
@@ -245,6 +251,33 @@ void List<T>::RemoveAtTail()
     }
 }
 
+template<class T>
+void List<T>::RemoveDuplicates()
+{
+	std::cout << "Removing duplicate values from the list." << std::endl;
+
+	if (Head == nullptr)
+	{
+		return;
+	}
+	Node<T>* Current = Head;
+
+	while (Current->Next != nullptr) 
+	{
+		// Compares current node with next node.
+		if (Current->Data == Current->Next->Data)
+		{
+			// Delete current if it holds the same value as the next node.
+			DeleteNode(Current->Next);
+		}
+		else
+		{
+			// Move on to next node otherwise.
+			Current = Current->Next;
+		}
+	}
+}
+
 template <typename T>
 const T& List<T>::operator[](size_t index) const
 {
@@ -283,12 +316,10 @@ void List<T>::SelectionSort(List<T>& list)
                 MinIndex = j;
             }
         }
-
+    	
         if (MinIndex != i)
         {
-            Temp = list[i];
-            list[i] = list[MinIndex];
-            list[MinIndex] = Temp;
+        	SwapNodes(list[i], list[MinIndex]);
         }
     }
 }
@@ -309,9 +340,7 @@ void List<T>::BubbleSort(List<T>& list)
 		j++;
 		for (size_t i = 0; i < NumberOfElements - j; i++) {
 			if (list[i] > list[i + 1]) {
-				Temp = list[i];
-				list[i] = list[i + 1];
-				list[i + 1] = Temp;
+				SwapNodes(list[i], list[i+1]);
 				Swapped = true;
 			}
 		}
@@ -402,7 +431,7 @@ int List<T>::Partition(List<T>& list, int low, int high)
 
 	if (PivotIndex != high)
 	{
-		std::swap(list[PivotIndex], list[high]);
+		SwapNodes(list[PivotIndex], list[high]);
 	}
 
 	T PivotValue = list[high];
@@ -412,11 +441,11 @@ int List<T>::Partition(List<T>& list, int low, int high)
 	{
 		if (list[j] <= PivotValue)
 		{
-			std::swap(list[i], list[j]);
+			SwapNodes(list[i], list[j]);
 			i++;
 		}
 	}
-	std::swap(list[i], list[high]);
+	SwapNodes(list[i], list[high]);
 	return i;
 }
 
@@ -434,7 +463,7 @@ void List<T>::HeapSort(List<T>& list)
 
 	for (int i = length - 1; i > 0; i--)
 	{
-		std::swap(list[0], list[i]);
+		SwapNodes(list[0], list[i]);
 		Heapify(list, i, 0);
 	}
 }
@@ -455,7 +484,50 @@ void List<T>::Heapify(List<T>& list, int length, int i)
 
 	if (Largest != i) 
 	{
-		Swap(list[i], list[Largest]);
+		SwapNodes(list[i], list[Largest]);
 		Heapify(list, length, Largest);
 	}
+}
+
+template <typename T>
+void List<T>::SwapNodes(T left, T right)
+{
+	// Exit early if left and right hold the same value.
+	if (left == right) return;
+ 
+	// Search for node holding value = "left" in the list.
+	Node<T>* PrevLeft = nullptr;
+	Node<T>* CurrentLeft = Head;
+	while (CurrentLeft && CurrentLeft->Data != left)
+	{
+		PrevLeft = CurrentLeft;
+		CurrentLeft = CurrentLeft->Next;
+	}
+ 
+	// Search for node holding value = "right" in the list.
+	Node<T>* PrevRight = NULL;
+	Node<T>* CurrentRight = Head;
+	while (CurrentRight && CurrentRight->Data != right)
+	{
+		PrevRight = CurrentRight;
+		CurrentRight = CurrentRight->Next;
+	}
+ 
+	// If either value was not found in the list, exit function.
+	if (CurrentLeft == nullptr || CurrentRight  == nullptr) return;
+ 
+	// If "right" is not the head of the linked list.
+	if (PrevLeft != nullptr) PrevLeft->Next = CurrentRight;
+	// Else make "right" as new head.
+	else Head = CurrentRight;
+ 
+	// If "left" is not head of linked list
+	if (PrevRight != nullptr) PrevRight->Next = CurrentLeft;
+	// Else make "left" as new head.
+	else Head = CurrentLeft;
+ 
+	// Swap next pointers
+	Node<T>* Temp = CurrentRight->Next;
+	CurrentRight->Next = CurrentLeft->Next;
+	CurrentLeft->Next = Temp;
 }
