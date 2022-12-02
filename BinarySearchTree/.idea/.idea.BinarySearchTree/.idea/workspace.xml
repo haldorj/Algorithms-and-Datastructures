@@ -4,11 +4,39 @@
     <projectFile>BinarySearchTree/BinarySearchTree.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="556b18eb-fe9c-4e4f-8531-02d8f902a596" name="Changes" comment="" />
+    <list default="true" id="556b18eb-fe9c-4e4f-8531-02d8f902a596" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.exe.recipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/Dijkstra's Algorithm.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/Dijkstra's Algorithm.lastbuildstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/main.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BinarySearchTree/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BinarySearchTree/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearchTree/BinaryTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/BinaryTree.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearchTree/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/BinarySearchTree.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/BinarySearchTree.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/main.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.exe" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.pdb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.31.31103/include/ostream" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.31.31103/include/xstring" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -97,6 +125,7 @@
       <workItem from="1669369365419" duration="22000" />
       <workItem from="1669743256003" duration="704000" />
       <workItem from="1669744136334" duration="4716000" />
+      <workItem from="1669996451149" duration="5818000" />
     </task>
     <servers />
   </component>

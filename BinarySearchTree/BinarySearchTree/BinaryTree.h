@@ -14,6 +14,7 @@ public:
     void PrintChildren(T value);
     T FindSmallest();
     void RemoveNode(T value);
+    void RemoveSubtree();
     
 private:
     Node<T>* Root; // The node at the very top of the tree.
@@ -28,7 +29,8 @@ private:
     void RemoveNodePrivate(T value, Node<T>* parent);
     void RemoveRootMatch();
     void RemoveMatch(Node<T>* parent, Node<T>* match, bool left);
-    void RemoveSubtree(Node<T>* ptr);
+    void RemoveSubtreePrivate(Node<T>* ptr);
+    T MatchKey;
 };
 
 template <typename T>
@@ -40,7 +42,7 @@ BinaryTree<T>::BinaryTree()
 template <typename T>
 BinaryTree<T>::~BinaryTree()
 {
-    RemoveSubtree(Root);
+    RemoveSubtree();
 }
 
 template <typename T>
@@ -279,6 +281,7 @@ T BinaryTree<T>::FindSmallestPrivate(Node<T>* ptr)
 template <typename T>
 void BinaryTree<T>::RemoveNode(T value)
 {
+    MatchKey = value;
     RemoveNodePrivate(value, Root);
 }
 
@@ -295,12 +298,14 @@ void BinaryTree<T>::RemoveNodePrivate(T value, Node<T>* parent)
         {
             if (value < parent->Data && parent->Left != nullptr)
             {
+                // if left child contains value we're trying to delete
                 parent->Left->Data == value ?
                 RemoveMatch(parent, parent->Left, true) :
                 RemoveNodePrivate(value, parent->Left);
             }
-            else if  (value > parent->Data && parent->Right != nullptr)
+            else if (value > parent->Data && parent->Right != nullptr)
             {
+                // if right child contains value we're trying to delete
                 parent->Right->Data == value ?
                 RemoveMatch(parent, parent->Right, false) :
                 RemoveNodePrivate(value, parent->Right);
@@ -340,8 +345,8 @@ void BinaryTree<T>::RemoveRootMatch()
             Root = Root->Right;
             delPtr->Right = nullptr;
             delete delPtr;
-            std::cout << "The root node with value " << RootValue << "Was deleted " << std::endl;
-            std::cout << "The new root contains value " << Root->Data << std::endl;
+            std::cout << "The root node with value " << RootValue << " was deleted ";
+            std::cout << "The new root contains value " << Root->Data << "." << std::endl;
         }
         // Left
         else if (Root->Left != nullptr && Root->Right == nullptr)
@@ -349,8 +354,8 @@ void BinaryTree<T>::RemoveRootMatch()
             Root = Root->Left;
             delPtr->Left = nullptr;
             delete delPtr;
-            std::cout << "The root node with value " << RootValue << "Was deleted " << std::endl;
-            std::cout << "The new root contains value " << Root->Data << std::endl;
+            std::cout << "The root node with value " << RootValue << " was deleted ";
+            std::cout << "The new root contains value " << Root->Data << "." << std::endl;
         }
 
         // Case 2 - 2 children
@@ -360,15 +365,14 @@ void BinaryTree<T>::RemoveRootMatch()
                 SmallestInRightSubtree = FindSmallestPrivate(Root->Right);
                 RemoveNodePrivate(SmallestInRightSubtree, Root);
                 Root->Data = SmallestInRightSubtree;
-                std::cout << "The root containing value " << RootValue << std::endl;
-                std::cout << "was overwritten with key " << Root->Data << std::endl;
+                std::cout << "The root containing value " << RootValue;
+                std::cout << " was overwritten with key " << Root->Data << std::endl;
             }
         }
-        
     }
     else
     {
-        std::cout << "Can not remove root. The tree is empty" << std::endl;
+        std::cout << "Can not remove root. The tree is empty." << std::endl;
     }
 }
 
@@ -378,7 +382,6 @@ void BinaryTree<T>::RemoveMatch(Node<T>* parent, Node<T>* match, bool left)
     if (Root != nullptr)
     {
         Node<T>* delPtr;
-        T MatchKey = match->Data;
         T SmallestInRightSubtree;
 
         // case 0 - 0 Children
@@ -397,17 +400,17 @@ void BinaryTree<T>::RemoveMatch(Node<T>* parent, Node<T>* match, bool left)
             left == true ? parent->Left = match->Right : parent->Right = match->Right;
             match->Right = nullptr;
             delPtr = match;
-            delete delPtr;
             std::cout << "The node containing value " << MatchKey << " was removed" << std::endl; 
+            delete delPtr;
         }
         // Left
-        else if (match->Right != nullptr && match->Left == nullptr)
+        else if (match->Left != nullptr && match->Right == nullptr)
         {
             left == true ? parent->Left = match->Left : parent->Right = match->Left;
             match->Left = nullptr;
             delPtr = match;
-            delete delPtr;
             std::cout << "The node containing value " << MatchKey << " was removed" << std::endl; 
+            delete delPtr;
         }
         // Case 2 - 2 children
         else
@@ -424,17 +427,23 @@ void BinaryTree<T>::RemoveMatch(Node<T>* parent, Node<T>* match, bool left)
 }
 
 template <typename T>
-void BinaryTree<T>::RemoveSubtree(Node<T>* ptr)
+void BinaryTree<T>::RemoveSubtree()
+{
+    RemoveSubtreePrivate(Root);
+}
+
+template <typename T>
+void BinaryTree<T>::RemoveSubtreePrivate(Node<T>* ptr)
 {
     if (ptr != nullptr)
     {
         if(ptr->Left != nullptr)
         {
-            RemoveSubtree(ptr->Left);
+            RemoveSubtreePrivate(ptr->Left);
         }
         if(ptr->Right != nullptr)
         {
-            RemoveSubtree(ptr->Right);
+            RemoveSubtreePrivate(ptr->Right);
         }
         std::cout << "Deleting the node containing " <<  ptr->Data << std::endl;
         delete ptr;

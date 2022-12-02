@@ -23,7 +23,7 @@ int main()
     std::cout << "Before adding numbers" << std::endl;
     Tree->PrintInOrder();
 
-    for (int i = 0; i < Size; i++)
+    for (int i = 0; i < Size -1 ; i++)
     {
         Tree->AddLeaf(arr[i]);
     }
@@ -58,6 +58,7 @@ int main()
     std::cout << "The smallest node in the tree is " << Tree->FindSmallest() << std::endl;
     std::cout << std::endl;
     std::cout << "Enter a key value to delete. Enter -1 to stop the process." << std::endl;
+    Tree->RemoveNode(44);
 
     while (input != -1)
     {
@@ -73,6 +74,7 @@ int main()
             }
         }
     }
+    Tree->RemoveSubtree();
     
     return 0;
 }
