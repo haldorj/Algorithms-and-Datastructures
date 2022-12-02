@@ -32,36 +32,24 @@
 int main()
 {
 	Graph graph;
+
+	graph.InsertNode('A');
+	graph.InsertNode('B');
+	graph.InsertNode('C');
+	graph.InsertNode('D');
+	graph.InsertNode('E');
+	graph.InsertNode('F');
+
+	graph.InsertEdge('A', 'B', 2.f);
+	graph.InsertEdge('A', 'C', 4.f);
+	graph.InsertEdge('B', 'C', 1.f);
+	graph.InsertEdge('B', 'D', 7.f);
+	graph.InsertEdge('C', 'E', 3.f);
+	graph.InsertEdge('E', 'D', 2.f);
+	graph.InsertEdge('D', 'F', 1.f);
+	graph.InsertEdge('E', 'F', 5.f);
 	
-	Node* nodeA = new Node('A');
-	Node* nodeB = new Node('B');
-	Node* nodeC = new Node('C');
-	Node* nodeD = new Node('D');
-	Node* nodeE = new Node('E');
-	
-	graph.Nodes.push_back(nodeA);
-	graph.Nodes.push_back(nodeB);
-	graph.Nodes.push_back(nodeC);
-	graph.Nodes.push_back(nodeD);
-	graph.Nodes.push_back(nodeE);
-
-	Edge* edgeAB = new Edge{nodeA, nodeB, 1.f};
-	Edge* edgeAC = new Edge{nodeA, nodeC, 2.f};
-	Edge* edgeBC = new Edge{nodeB, nodeC, 2.f};
-	Edge* edgeCD = new Edge{nodeC, nodeD, 3.f};
-	Edge* edgeDE = new Edge{nodeD, nodeE, 1.f};
-	Edge* edgeAE = new Edge{nodeA, nodeE, 5.f};
-	Edge* edgeCE = new Edge{nodeC, nodeE, 4.f};
-
-	nodeA->InsertEdge(*edgeAB);
-	nodeA->InsertEdge(*edgeAC);
-	nodeB->InsertEdge(*edgeBC);
-	nodeC->InsertEdge(*edgeCD);
-	nodeD->InsertEdge(*edgeDE);
-	nodeA->InsertEdge(*edgeAE);
-	nodeC->InsertEdge(*edgeCE);
-
-	graph.Dijkstra(nodeA, nodeD);
+	graph.Dijkstra(graph.FindNode('A'), graph.FindNode('F'));
 	
 	std::cout << std::endl;
 
