@@ -2,15 +2,17 @@
 
 struct Edge
 {
-    float m_Distance; // Distance/weight of edge
-    Node* m_ToNode; // Pointer to node
-    Edge(float distance, Node* to_node);
+    Node* m_FromNode;
+    Node* m_ToNode;
+    float m_Cost;
     
-    operator float() const { return m_Distance; }
+    Edge(Node* from_node, Node* to_node, float cost);
+    operator float() const { return m_Cost; }
 };
 
-Edge::Edge(float distance, Node* to_node)
+Edge::Edge(Node* from_node, Node* to_node, float cost)
 {
-    m_Distance = distance;
+    m_FromNode = from_node;
     m_ToNode = to_node;
+    m_Cost = cost;
 }

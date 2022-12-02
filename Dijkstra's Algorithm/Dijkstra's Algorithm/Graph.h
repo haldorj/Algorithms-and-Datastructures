@@ -1,92 +1,86 @@
 ﻿#pragma once
 
+typedef std::pair<float, Node*> Pair;
+const float INF = 100000.f;
+
 struct Graph
 {
 	std::list<Node*> Nodes;
 	Graph(){}
-
-	Node* FindNode(char name);
-	void InsertNode(char name);
-	void InsertEdge(char from_name, char to_name, float distance);
-	float mst();
-	Path Dijkstra(Node* start, Node* end);
+	void Dijkstra(Node* start, Node* end);
 };
 
-Node* Graph::FindNode(char name)
+void Graph::Dijkstra(Node* start, Node* end)
 {
+	if (start == nullptr || end == nullptr) return;	// Exit function early if start or end is null.
+
+	std::priority_queue<Pair, std::vector<Pair>, std::greater<>> pq;
+	
+	// Set distance from start for all nodes to INF.
 	for (auto node : Nodes)
 	{
-		if(node->m_Name == name)
-		{
-			return node;
-		}
+		node->m_DistanceFromStart = INF;
+		node->m_Visited = false;
+		node->Prev = nullptr;
+		node->Parent = nullptr;
 	}
-	return nullptr;
-}
 
-void Graph::InsertNode(char name) 
-{
-	Nodes.push_back(new Node(name)); 
-}
+	// Insert source itself in priority queue and initialize
+	// its distance as 0.
+	pq.push(std::make_pair(0, start));
+	start->m_DistanceFromStart = 0;
 
-void Graph::InsertEdge(char from_name, char to_name, float distance)
-{
-	Node* from = nullptr;
-	Node* to = nullptr;
-	for (auto node : Nodes)
+	// Mark Start as visited and DistanceFromStart as 0.
+	start->m_DistanceFromStart = 0.f;
+	start->m_Visited = true;
+	
+	while (!pq.empty())
 	{
-		if (node->m_Name == from_name)
-			from = node;
-		else if (node->m_Name == to_name)
-			to = node;
-	}
-	if (from && to)
-		from->InsertEdge({ distance, to });
-}
-
-Path Graph::Dijkstra(Node* start, Node* end)
-{
-	// Ascending priority queue
-	std::priority_queue<Path, std::vector<Path>, std::greater<Path>> APQ;
-	std::vector<Node*> visited;
-	// setup
-	Edge StartEdge{ 0.f, start };
-	Path StartPath;
-	StartPath.m_edges.push_back(StartEdge);
-	APQ.push(StartPath);
-	Path ShortestPath;
-	while (!APQ.empty())
-	{
-		Node* tempNode = APQ.top().GetLastNode();
-		if (tempNode == end)
+		Node* Current = pq.top().second;
+		pq.pop();
+		
+		Current->m_Visited = true;
+		// For all neighbours of the "current" node.
+		for (const auto edge : Current->m_Edges)
 		{
-			ShortestPath = APQ.top();
-			break;
-		}
-		Path TempPath = APQ.top();
-		APQ.pop();
-		tempNode->m_Visited = true;
-		visited.push_back(tempNode);
-		for (auto& edge : tempNode->m_Edges)
-		{
-			if (!edge.m_ToNode->m_Visited)
+			if (edge.m_ToNode->m_Visited != true)
 			{
-				Path newPath = TempPath;
-				newPath.m_edges.push_back(edge);
-				newPath.Print();
-				APQ.push(newPath);
+				auto Next = edge.m_ToNode;
+				auto Cost = edge.m_Cost;
+				
+				if (Next->m_DistanceFromStart > Current->m_DistanceFromStart + Cost )
+				{
+					Next->m_DistanceFromStart = Current->m_DistanceFromStart + Cost;
+					pq.push(std::make_pair(Next->m_DistanceFromStart, Next));
+					Next->Prev = Current;
+				}
 			}
 		}
 		std::cout << std::endl;
 	}
+	
+	std::cout << "All node's shortest distance from start: " << std::endl;
+	for (auto node : Nodes)
+	{
+		std::cout << node->m_Name << " "<< node->m_DistanceFromStart << std::endl;
+	}
 
-	for (auto node : visited)
-		node->m_Visited = false;
+	std::cout << std::endl;
 
-	std::cout << "Shortest path: ";
-	for (auto& edge : ShortestPath.m_edges)
-		std::cout << edge.m_ToNode->m_Name;
-	std::cout << " (" << ShortestPath << ")" << std::endl;
+	
+	std::cout << "Shortest path: " << std::endl;
+	Node* Temp = end;
+	
+	while (Temp->Prev != nullptr)
+	{
+		Temp->Prev->Parent = Temp;
+		Temp = Temp->Prev;
+	}
 
-	return ShortestPath;
+	while (Temp->Parent != nullptr)
+	{
+		std::cout << Temp->m_Name << " -> ";
+		Temp = Temp->Parent;
+	}
+	std::cout << Temp->m_Name << " Total Cost: " << Temp->m_DistanceFromStart << "." << std::endl;
 }

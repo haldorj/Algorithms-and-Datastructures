@@ -4,9 +4,13 @@ struct Node
 {
     char m_Name;
     bool m_Visited;
-    std::list<struct Edge> m_Edges;
+	float m_DistanceFromStart;
+    std::list<struct Edge> m_Edges; // for traversing to neighbouring nodes.
+	
+	Node* Prev;
+	Node* Parent;
 
-	Node(char name);
+	Node(char name); // Construct new node
 	void InsertEdge(const Edge& edge); // Insert an edge into the node
 };
 

@@ -33,31 +33,36 @@ int main()
 {
 	Graph graph;
 	
-	graph.InsertNode('A');
-	graph.InsertNode('B');
-	graph.InsertNode('C');
-	graph.InsertNode('D');
-	graph.InsertNode('E');
+	Node* nodeA = new Node('A');
+	Node* nodeB = new Node('B');
+	Node* nodeC = new Node('C');
+	Node* nodeD = new Node('D');
+	Node* nodeE = new Node('E');
+	
+	graph.Nodes.push_back(nodeA);
+	graph.Nodes.push_back(nodeB);
+	graph.Nodes.push_back(nodeC);
+	graph.Nodes.push_back(nodeD);
+	graph.Nodes.push_back(nodeE);
 
-	graph.InsertEdge('A', 'B', 1.f);
-	graph.InsertEdge('A', 'C', 2.f);
-	graph.InsertEdge('B', 'C', 2.f);
-	graph.InsertEdge('C', 'D', 3.f);
-	graph.InsertEdge('D', 'E', 1.f);
-	graph.InsertEdge('A', 'E', 5.f);
-	graph.InsertEdge('C', 'E', 4.f);
+	Edge* edgeAB = new Edge{nodeA, nodeB, 1.f};
+	Edge* edgeAC = new Edge{nodeA, nodeC, 2.f};
+	Edge* edgeBC = new Edge{nodeB, nodeC, 2.f};
+	Edge* edgeCD = new Edge{nodeC, nodeD, 3.f};
+	Edge* edgeDE = new Edge{nodeD, nodeE, 1.f};
+	Edge* edgeAE = new Edge{nodeA, nodeE, 5.f};
+	Edge* edgeCE = new Edge{nodeC, nodeE, 4.f};
 
-	std::cout << "Displaying Graph: " << std::endl;
-	// range based for loop
-	for (auto node : graph.Nodes)
-	{
-		std::cout << "Node: " << node->m_Name << " Edges(Distance): ";
-		for (auto& edge : node->m_Edges)
-		{
-			std::cout << node->m_Name << edge.m_ToNode->m_Name << "(" << edge.m_Distance << "), ";
-		}
-		std::cout << std::endl;
-	}
+	nodeA->InsertEdge(*edgeAB);
+	nodeA->InsertEdge(*edgeAC);
+	nodeB->InsertEdge(*edgeBC);
+	nodeC->InsertEdge(*edgeCD);
+	nodeD->InsertEdge(*edgeDE);
+	nodeA->InsertEdge(*edgeAE);
+	nodeC->InsertEdge(*edgeCE);
+
+	graph.Dijkstra(nodeA, nodeD);
+	
 	std::cout << std::endl;
-	graph.Dijkstra(graph.FindNode('A'), graph.FindNode('D'));
+
 }
