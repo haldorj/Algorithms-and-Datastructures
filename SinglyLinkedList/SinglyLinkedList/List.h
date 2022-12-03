@@ -115,9 +115,8 @@ void List<T>::PrintData()
 {
     std::cout << "Prints from head to tail (start to end)" << std::endl;
 
-    Node<T>* Temp = new Node<T>;
     // Create a node that points to Head.
-    Temp = Head;
+    Node<T>* Temp = Head;
     // Loop through until it gets to a nullptr.
     while (Temp != nullptr)
     {
@@ -272,9 +271,7 @@ void List<T>::RemoveAtHead()
         return;
     }
 
-    Node<T>* tempNode = new Node<T>;
-
-    tempNode = Head;
+    Node<T>* tempNode = Head;
     Head = tempNode->Next;
 
     delete tempNode;
