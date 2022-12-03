@@ -7,7 +7,6 @@ class List
     Node<T>* Head;
     Node<T>* Tail;
     size_t NumberOfElements;
-    T* SingleList;
 public:
     List();
     List(std::initializer_list<T> initializer_list)
@@ -31,6 +30,12 @@ public:
 	Node<T>* FindNodeSpecific(size_t index);
     size_t GetNumberOfElements() const { return NumberOfElements; }
 
+	void LinearSearch(List<T>& list, const T& value);
+	std::string LinearSearchOutput(List<T>& list, const T& value);
+
+	void BinarySearch(List<T>& list, const T& value);
+	std::string BinarySearchOutput(List<T>& list, size_t left, size_t right, const T& value);
+	
     // Sorting
     void SelectionSort(List<T>& list);
     void BubbleSort(List<T>& list);
@@ -199,6 +204,62 @@ Node<T>* List<T>::FindNodeSpecific(size_t index)
 
     Node<T>* tempNode = p->Next;
     return tempNode;
+}
+
+template<typename T>
+void List<T>::LinearSearch(List<T>& list, const T& value)
+{
+	std::cout << "Attempting linear search." << std::endl;
+	std::cout << "Searching for " << value << "... " << std::endl;
+	std::cout << LinearSearchOutput(list, value) << std::endl;
+}
+
+template<typename T>
+std::string List<T>::LinearSearchOutput(List<T>& list, const T& value)
+{
+	for (size_t i = 0; i < NumberOfElements; i++)
+	{
+		if (value == list[i])
+		{
+			std::stringstream buffer;
+			buffer << "The value " << value << " was found at the element with index " << i << "." << std::endl;
+			std::string Success = buffer.str();
+			return Success;
+		}
+	}
+	return "No result";
+}
+
+template<typename T>
+void List<T>::BinarySearch(List<T>& list, const T& value)
+{
+	std::cout << "Attempting binary search." << std::endl;
+	std::cout << "Searching for " << value << "... " << std::endl;
+	std::cout << BinarySearchOutput(list, 0, NumberOfElements - 1, value) << std::endl;
+}
+
+template<typename T>
+std::string List<T>::BinarySearchOutput(List<T>& list, size_t left, size_t right, const T& value)
+{
+	if (right >= left) 
+	{
+		size_t mid = left + (right - left) / 2;
+
+		if (list[mid] == value)
+		{
+			std::stringstream buffer;
+			buffer << "The value " << value << " was found at the element with index " << mid << "." << std::endl;
+			std::string Success = buffer.str();
+			return Success;
+		}
+		if (list[mid] > value)
+		{
+			return BinarySearchOutput(list, left, mid - 1, value);
+		}
+
+		return BinarySearchOutput(list, mid + 1, right, value);
+	}
+	return "No result";
 }
 
 template<typename T>

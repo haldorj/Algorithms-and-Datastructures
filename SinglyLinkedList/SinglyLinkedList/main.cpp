@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "Node.h"
 #include "List.h"
@@ -8,37 +9,37 @@
 int main()
 {
     // List<std::string>* Slink = new List<std::string>();
-    List<std::string> Slink;
-    Slink.AddToTail("Sara");
-    Slink.AddToTail("Carl");
-    Slink.AddToTail("Jack");
-    Slink.AddToTail("Steven");
-    Slink.AddToTail("Rose");
-    Slink.AddToTail("John");
-    Slink.PrintData();
-    Slink.RemoveAtHead();
-    Slink.PrintData();
-    Slink.RemoveAt(2);
-    Slink.PrintData();
-    Slink.InsertAt(3, "Karen");
-    Slink.AddToHead("George");
-    Slink.RemoveAtTail();
-    Slink.PrintData();
-    std::cout << "Number of elements in list: " << Slink.GetNumberOfElements() << "." << std::endl;
-    Slink.InsertAt(1, "John");
-    Slink.PrintData();
-    Slink.InsertAt(0, "Dennis");
-    Slink.PrintData();
-    std::cout << "Number of elements: " << Slink.GetNumberOfElements() << std::endl;
-
-    //Slink.SelectionSort(Slink);
-    //Slink.BubbleSort(Slink);
-    //Slink.MergeSort(Slink);
-    Slink.QuickSort(Slink);
-    //Slink.HeapSort(Slink);
-    
-    std::cout << "Printing list after sorting: " << std::endl;
-    Slink.PrintData();
+    // List<std::string> Slink;
+    // Slink.AddToTail("Sara");
+    // Slink.AddToTail("Carl");
+    // Slink.AddToTail("Jack");
+    // Slink.AddToTail("Steven");
+    // Slink.AddToTail("Rose");
+    // Slink.AddToTail("John");
+    // Slink.PrintData();
+    // Slink.RemoveAtHead();
+    // Slink.PrintData();
+    // Slink.RemoveAt(2);
+    // Slink.PrintData();
+    // Slink.InsertAt(3, "Karen");
+    // Slink.AddToHead("George");
+    // Slink.RemoveAtTail();
+    // Slink.PrintData();
+    // std::cout << "Number of elements in list: " << Slink.GetNumberOfElements() << "." << std::endl;
+    // Slink.InsertAt(1, "John");
+    // Slink.PrintData();
+    // Slink.InsertAt(0, "Dennis");
+    // Slink.PrintData();
+    // std::cout << "Number of elements: " << Slink.GetNumberOfElements() << std::endl;
+    //
+    // //Slink.SelectionSort(Slink);
+    // //Slink.BubbleSort(Slink);
+    // //Slink.MergeSort(Slink);
+    // Slink.QuickSort(Slink);
+    // //Slink.HeapSort(Slink);
+    //
+    // std::cout << "Printing list after sorting: " << std::endl;
+    // Slink.PrintData();
     
     List<int> int_link;
     int_link.AddToTail(6);
@@ -72,8 +73,13 @@ int main()
     char_link.QuickSort(char_link);
     //char_link.HeapSort(char_link);
     std::cout << "Printing list after sorting: " << std::endl;
-    
     char_link.PrintData();
+    
+    char_link.LinearSearch(char_link, 'E');
+    char_link.LinearSearch(char_link, 'C');
+    char_link.BinarySearch(char_link,'W');
+    
+
     
 
     
