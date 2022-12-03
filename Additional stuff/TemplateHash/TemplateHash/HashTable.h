@@ -11,7 +11,7 @@ template <typename T>
 class hash_table
 {
     //size of table
-    static const T TABLE_SIZE = 10;
+    static const size_t TABLE_SIZE = 10;
 
 public:
     size_t HashFunction(T data);

@@ -34,13 +34,13 @@ int main()
     //Slink.SelectionSort(Slink);
     //Slink.BubbleSort(Slink);
     //Slink.MergeSort(Slink);
-    //Slink.QuickSort(Slink);
-    Slink.HeapSort(Slink);
+    Slink.QuickSort(Slink);
+    //Slink.HeapSort(Slink);
     
     std::cout << "Printing list after sorting: " << std::endl;
     Slink.PrintData();
     
-   /* List<int> int_link;
+    List<int> int_link;
     int_link.AddToTail(6);
     int_link.AddToTail(12);
     int_link.AddToTail(30);
@@ -51,7 +51,7 @@ int main()
     //int_link.SelectionSort(int_link);
     //int_link.BubbleSort(int_link);
     //int_link.MergeSort(int_link);
-    //int_link.QuickSort(int_link);
+    int_link.QuickSort(int_link);
     //int_link.HeapSort(int_link);
     std::cout << "Printing list after sorting: " << std::endl;
     int_link.PrintData();
@@ -69,11 +69,11 @@ int main()
     //char_link.SelectionSort(char_link);
     //char_link.BubbleSort(char_link);
     //char_link.MergeSort(char_link);
-    //char_link.QuickSort(char_link);
+    char_link.QuickSort(char_link);
     //char_link.HeapSort(char_link);
     std::cout << "Printing list after sorting: " << std::endl;
     
-    char_link.PrintData(); */
+    char_link.PrintData();
     
 
     

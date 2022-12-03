@@ -29,7 +29,6 @@ public:
 	void RemoveDuplicates();
 
 	Node<T>* FindNodeSpecific(size_t index);
-
     size_t GetNumberOfElements() const { return NumberOfElements; }
 
     // Sorting
@@ -45,7 +44,7 @@ private:
     void MergeSortedArrays(List<T>& list, size_t left, size_t mid, size_t right);
 	
     void QuickSortRecursion(List<T>& list, int low, int high);
-    int Partition(List<T>& list, int low, int high);
+    int QuickSortPartition(List<T>& list, int low, int high);
 	
 	void Heapify(List<T>& list, int length, int i);
 	
@@ -305,6 +304,7 @@ void List<T>::SelectionSort(List<T>& list)
     std::cout << "Attempting selectionsort." << std::endl;
     std::cout << "Sorting..." << std::endl;
 
+	// loop through all elements in list
     for (i = 0; i < NumberOfElements - 1; i++)
     {
         MinIndex = i;
@@ -350,6 +350,10 @@ void List<T>::BubbleSort(List<T>& list)
 template<typename T>
 void List<T>::MergeSort(List<T>& list)
 {
+	std::cout << "Attempting mergesort." << std::endl;
+	std::cout << "Sorting..." << std::endl;
+	
+	// Pass in linked list, with the first and last element
 	MergeSortRecursion(list, 0, NumberOfElements -1);
 }
 
@@ -358,11 +362,14 @@ void List<T>::MergeSortRecursion(List<T>& list, size_t left, size_t right)
 {
 	if (left < right)
 	{
+		// Element at the middle of the list.
 		size_t mid = left + (right - left) / 2;
 
+		// Splits the list until there are only individual elements in the list.
 		MergeSortRecursion(list, left, mid);
 		MergeSortRecursion(list, mid + 1, right);
 
+		// After recursion is done, merge the sorted arrays.
 		MergeSortedArrays(list, left, mid, right);
 	}
 }
@@ -370,34 +377,50 @@ void List<T>::MergeSortRecursion(List<T>& list, size_t left, size_t right)
 template<typename T>
 void List<T>::MergeSortedArrays(List<T>& list, size_t left, size_t mid, size_t right)
 {
+	// Length of left portion of list
 	size_t LeftLength = mid - left + 1;
+	// Length of left portion of list
 	size_t RightLength = right - mid;
 
+	// Temp arrays with same length as corresponding list
 	T* TempLeft = new T[LeftLength];
 	T* TempRight = new T[RightLength];
-
+	
 	size_t i, j, k;
 
+	// Left sub array
 	for (i = 0; i < LeftLength; i++)
-	{
 		TempLeft[i] = list[left + i];
-	}
-	for (i = 0; i < RightLength; i++)
-	{
-		TempRight[i] = list[mid + 1 + i];
-	}
 
+	// Right sub array
+	for (i = 0; i < RightLength; i++)
+		TempRight[i] = list[mid + 1 + i];
+	
+	//				i
+	// TempLeft: 4, 9 ,12.
+	//			  j
+	// TempRight: 5, 8, 14.
+	//
+	// i keeps track of elements in the left sub array.
+	// j keeps track of elements in the right sub array.
+	// here TempR[j] = 5 < TempL[i] = 9
+	// 5 will be added to list[k]
+	// we increment j and k (i++, k++).
 	for (i = 0, j = 0, k = left; k <= right; k++)
 	{
 		if ((i < LeftLength) &&
 			(j >= RightLength || TempLeft[i] <= TempRight[j]))
 		{
+			// add element from TempLeft
 			list[k] = TempLeft[i];
+			// increment i.
 			i++;
 		}
 		else
 		{
+			// add element from TempRight
 			list[k] = TempRight[j];
+			//increment j.
 			j++;
 		}
 	}
@@ -409,44 +432,74 @@ void List<T>::QuickSort(List<T>& list)
 	std::cout << "Attempting quicksort." << std::endl;
 	std::cout << "Sorting..." << std::endl;
 
+	// for random numbers using time
 	srand(time(NULL));
+
+	// Pass in linked list, with the first and last element
 	QuickSortRecursion(list, 0, NumberOfElements - 1);
 }
 
 template<typename T>
 void List<T>::QuickSortRecursion(List<T>& list, int low, int high)
 {
-	if (low < high)
+	// low = starting index, high = ending index
+	if (low < high) // low >= high means we are done sorting
 	{
-		int PivotIndex = Partition(list, low, high);
+		int PivotIndex = QuickSortPartition(list, low, high);
+		// Left portion of list up until Pivot index - 1
 		QuickSortRecursion(list, low, PivotIndex - 1);
+		// Right portion of the array.
 		QuickSortRecursion(list, PivotIndex + 1, high);
 	}
 }
 
 template<typename T>
-int List<T>::Partition(List<T>& list, int low, int high)
+int List<T>::QuickSortPartition(List<T>& list, int low, int high)
 {
+	// pick a random index between high and low.
 	int PivotIndex = low + (rand() % (high - low));
 
+	// If PI != high, swap high and PI
 	if (PivotIndex != high)
 	{
 		SwapNodes(list[PivotIndex], list[high]);
 	}
 
+	// value at list[high]
 	T PivotValue = list[high];
 	int i = low;
-
+	
 	for (int j = low; j < high; j++)
 	{
 		if (list[j] <= PivotValue)
 		{
+			//Swap nodes at list[i] and list[j].
 			SwapNodes(list[i], list[j]);
 			i++;
+
+			// EXAMPLE:
+			// Here j < i, we swap i and j, increment i by 1
+			//   j
+			// 6 3 7 5 1 2 [4] ; Pivot value = 4
+			// i
+
+			// increment j++ continue process until j < i
+			//         j							        j
+			// 3 6 7 5 1 2 [4] --> swap i and j --> 3 1 7 5 6 2 [4]
+			//   i								      i
+
+			// ending list
+			//				j
+			// 3 1 2 5 6 7 [4]
+			//       i
 		}
 	}
 	SwapNodes(list[i], list[high]);
-	return i;
+	// Swap i and j
+	//				j
+	// 3 1 2 4 6 7 [5]
+	//       i
+	return i; // list[i] = 4 becomes Pivot index
 }
 
 template<typename T>
@@ -456,11 +509,13 @@ void List<T>::HeapSort(List<T>& list)
 	std::cout << "Attempting heapsort." << std::endl;
 	std::cout << "Sorting..." << std::endl;
 
+	// Creates a max heap.
+	// A max heap is a complete binary tree in which the value of a node
+	// is greater than or equal to the values of its children
 	for (int i = length / 2 - 1; i >= 0; i--)
-	{
 		Heapify(list, length, i);
-	}
 
+	// Swaps first and last node.
 	for (int i = length - 1; i > 0; i--)
 	{
 		SwapNodes(list[0], list[i]);
@@ -469,21 +524,27 @@ void List<T>::HeapSort(List<T>& list)
 }
 
 template<typename T>
+
 void List<T>::Heapify(List<T>& list, int length, int i)
 {
+	// i = root
+	// find larges value among the root, left and right child
 	int Largest = i;
 	int Left = 2 * i + 1;
 	int Right = 2 * i + 2;
 
+	// if left is the largest
 	if (Left < length && list[Left] > list[Largest])
 		Largest = Left;
 
+	// if right is the largest
 	if (Right < length && list[Right] > list[Largest])
 		Largest = Right;
 
-
+	// if root is not largest swap root with the largest
 	if (Largest != i) 
 	{
+		// Recursively heapify the sub-tree
 		SwapNodes(list[i], list[Largest]);
 		Heapify(list, length, Largest);
 	}
