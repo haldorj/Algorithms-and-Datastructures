@@ -58,8 +58,7 @@ int main()
     std::cout << "The smallest node in the tree is " << Tree->FindSmallest() << std::endl;
     std::cout << std::endl;
     std::cout << "Enter a key value to delete. Enter -1 to stop the process." << std::endl;
-    Tree->RemoveNode(44);
-
+    
     while (input != -1)
     {
         std::cout << "Delete Node: " << std::endl;

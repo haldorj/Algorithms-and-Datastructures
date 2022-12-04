@@ -20,16 +20,16 @@ private:
     Node<T>* Root; // The node at the very top of the tree.
     Node<T>* CreateLeaf(T value);
     Node<T>* ReturnNode(T value);
-    void AddLeafPrivate(T value, Node<T>* ptr);
+    void AddLeafPrivate(T value, Node<T>* ptr); // Insert leaf to the tree.
     void PrintInOrderPrivate(Node<T>* ptr); // Function to perform inorder traversal on the tree (1. Go left, 2. Process Current Node, 3. Go right.)
-    void PrintPreOrderPrivate(Node<T>* ptr);
-    void PrintPostOrderPrivate(Node<T>* ptr);
+    void PrintPreOrderPrivate(Node<T>* ptr); // Function to perform preorder traversal on the tree (1. Process Current Node, 2. Go left, 3. Go right.)
+    void PrintPostOrderPrivate(Node<T>* ptr); // Function to perform postorder traversal on the tree (1. Go left, 2. Go right, 3. Process Current Node.)
     Node<T>* ReturnNodePrivate(T value, Node<T>* ptr); // Finds a specific node in the tree.
-    T FindSmallestPrivate(Node<T>* ptr);
-    void RemoveNodePrivate(T value, Node<T>* parent);
-    void RemoveRootMatch();
-    void RemoveMatch(Node<T>* parent, Node<T>* match, bool left);
-    void RemoveSubtreePrivate(Node<T>* ptr);
+    T FindSmallestPrivate(Node<T>* ptr); // Find the smallest node in given tree.
+    void RemoveNodePrivate(T value, Node<T>* parent); // Helper function, calls either RemoveNode, RemoveRoot or exits.
+    void RemoveRootMatch(); // Remove the root from the tree (if exists).
+    void RemoveMatch(Node<T>* parent, Node<T>* match, bool left); // Remove a specific node from the tree (if exists).
+    void RemoveSubtreePrivate(Node<T>* ptr); // Traverse tree post order, deleting all nodes
     T MatchKey;
 };
 
@@ -68,29 +68,36 @@ void BinaryTree<T>::AddLeaf(T value)
 template <typename T>
 void BinaryTree<T>::AddLeafPrivate(T value, Node<T>* ptr)
 {
+    // If tree is empty
     if (Root == nullptr)
     {
         Root = CreateLeaf(value);
     }
+    // if value is less than data of ptr
     else if (value < ptr->Data)
     {
+        // traverse left if occupied
         if(ptr->Left != nullptr)
         {
             AddLeafPrivate(value, ptr->Left);
         }
         else
         {
+            // if left is not occupied, create leaf.
             ptr->Left = CreateLeaf(value);
         }
     }
+    // if value is higher than data of ptr
     else if (value > ptr->Data)
     {
+        // traverse right if occupied
         if(ptr->Right != nullptr)
         {
             AddLeafPrivate(value, ptr->Right);
         }
         else
         {
+            // if right is not occupied, create leaf.
             ptr->Right = CreateLeaf(value);
         }
     }
@@ -290,6 +297,7 @@ void BinaryTree<T>::RemoveNodePrivate(T value, Node<T>* parent)
 {
     if (Root != nullptr)
     {
+        // if root has the value we want to delete
         if (Root->Data == value)
         {
             RemoveRootMatch();
@@ -394,6 +402,8 @@ void BinaryTree<T>::RemoveMatch(Node<T>* parent, Node<T>* match, bool left)
         }
 
         // case 1 - 1 Child
+        // Child becomes the new parent, and we remove the old parent from the tree.
+        // (Attach child to previous parent's parent).
         // Right
         else if (match->Left == nullptr && match->Right != nullptr)
         {
@@ -406,6 +416,7 @@ void BinaryTree<T>::RemoveMatch(Node<T>* parent, Node<T>* match, bool left)
         // Left
         else if (match->Left != nullptr && match->Right == nullptr)
         {
+            
             left == true ? parent->Left = match->Left : parent->Right = match->Left;
             match->Left = nullptr;
             delPtr = match;
@@ -415,6 +426,9 @@ void BinaryTree<T>::RemoveMatch(Node<T>* parent, Node<T>* match, bool left)
         // Case 2 - 2 children
         else
         {
+            // Find the node with the smallest value in the right sub tree.
+            // This node will be the new "parent" as its value is greater than all values in the left sub tree,
+            // and smaller than the nodes in the right subtree.
             SmallestInRightSubtree = FindSmallestPrivate(match->Right);
             RemoveNodePrivate(SmallestInRightSubtree, match);
             match->Data = SmallestInRightSubtree;

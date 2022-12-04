@@ -25,10 +25,12 @@ public:
     void RemoveAt(int index);
     void RemoveAtHead();
     void RemoveAtTail();
-	void RemoveDuplicates();
+	void RemoveDuplicates(); // Remove duplicate values, list needs to be sorted.
+	void DeleteNode(Node<T>* node); 
+	bool IsEmpty();
 
-	Node<T>* FindNodeSpecific(size_t index);
-    size_t GetNumberOfElements() const { return NumberOfElements; }
+	Node<T>* FindNodeSpecific(size_t index); // get specific node via index
+    size_t GetNumberOfElements() const { return NumberOfElements; } // return number of elements in the list
 
 	void LinearSearch(List<T>& list, const T& value);
 	std::string LinearSearchOutput(List<T>& list, const T& value);
@@ -53,7 +55,7 @@ private:
 	
 	void Heapify(List<T>& list, int length, int i);
 	
-	void SwapNodes(T left, T right); // Swaps the actual nodes in the linked list (not values).
+	void SwapNodes(size_t left, size_t right); // Swaps the actual nodes in the linked list (not values).
 	
 	const T& operator[](size_t index) const;
 	T& operator[](size_t index);
@@ -313,6 +315,8 @@ void List<T>::RemoveDuplicates()
 {
 	std::cout << "Removing duplicate values from the list." << std::endl;
 
+	int count = 0;
+	
 	if (Head == nullptr)
 	{
 		return;
@@ -322,10 +326,17 @@ void List<T>::RemoveDuplicates()
 	while (Current->Next != nullptr) 
 	{
 		// Compares current node with next node.
-		if (Current->Data == Current->Next->Data)
+		if (Current->Data == Current->Next->Data && Current->Next->Next != nullptr)
 		{
-			// Delete current if it holds the same value as the next node.
-			DeleteNode(Current->Next);
+			Node<T>* delPtr = Current->Next;
+			Current->Next = Current->Next->Next;
+			delete delPtr;
+		}
+		else if (Current->Next->Next == nullptr)
+		{
+			Node<T>* delPtr = Current->Next;
+			Current->Next = nullptr;
+			delete delPtr;
 		}
 		else
 		{
@@ -333,6 +344,18 @@ void List<T>::RemoveDuplicates()
 			Current = Current->Next;
 		}
 	}
+}
+
+template <typename T>
+bool List<T>::IsEmpty()
+{
+	if (Head == nullptr || Tail == nullptr)
+	{
+		std::cout << "List is empty." << std::endl;
+		return  true;
+	}
+	std::cout << "List is not empty." << std::endl;
+	return false;
 }
 
 template <typename T>
@@ -377,7 +400,7 @@ void List<T>::SelectionSort(List<T>& list)
     	
         if (MinIndex != i)
         {
-        	SwapNodes(list[i], list[MinIndex]);
+        	SwapNodes(i, MinIndex);
         }
     }
 }
@@ -398,7 +421,7 @@ void List<T>::BubbleSort(List<T>& list)
 		j++;
 		for (size_t i = 0; i < NumberOfElements - j; i++) {
 			if (list[i] > list[i + 1]) {
-				SwapNodes(list[i], list[i+1]);
+				SwapNodes(i, i + 1);
 				Swapped = true;
 			}
 		}
@@ -520,7 +543,7 @@ int List<T>::QuickSortPartition(List<T>& list, int low, int high)
 	// If PI != high, swap high and PI
 	if (PivotIndex != high)
 	{
-		SwapNodes(list[PivotIndex], list[high]);
+		SwapNodes(PivotIndex, high);
 	}
 
 	// value at list[high]
@@ -532,7 +555,7 @@ int List<T>::QuickSortPartition(List<T>& list, int low, int high)
 		if (list[j] <= PivotValue)
 		{
 			//Swap nodes at list[i] and list[j].
-			SwapNodes(list[i], list[j]);
+			SwapNodes(i, j);
 			i++;
 
 			// EXAMPLE:
@@ -552,7 +575,7 @@ int List<T>::QuickSortPartition(List<T>& list, int low, int high)
 			//       i
 		}
 	}
-	SwapNodes(list[i], list[high]);
+	SwapNodes(i, high);
 	// Swap i and j
 	//				j
 	// 3 1 2 4 6 7 [5]
@@ -576,7 +599,7 @@ void List<T>::HeapSort(List<T>& list)
 	// Swaps first and last node.
 	for (int i = length - 1; i > 0; i--)
 	{
-		SwapNodes(list[0], list[i]);
+		SwapNodes(0, i);
 		Heapify(list, i, 0);
 	}
 }
@@ -603,50 +626,30 @@ void List<T>::Heapify(List<T>& list, int length, int i)
 	if (Largest != i) 
 	{
 		// Recursively heapify the sub-tree
-		SwapNodes(list[i], list[Largest]);
+		SwapNodes(i, Largest);
 		Heapify(list, length, Largest);
 	}
 }
 
-template <typename T>
-void List<T>::SwapNodes(T left, T right)
+template <class T>
+void List<T>::SwapNodes(size_t left, size_t right)
 {
-	// Exit early if left and right hold the same value.
 	if (left == right) return;
- 
-	// Search for node holding value = "left" in the list.
-	Node<T>* PrevLeft = nullptr;
-	Node<T>* CurrentLeft = Head;
-	while (CurrentLeft && CurrentLeft->Data != left)
+	if (left > right)
 	{
-		PrevLeft = CurrentLeft;
-		CurrentLeft = CurrentLeft->Next;
+		// always smallest index at the "left" side
+		SwapNodes(right, left);
+		return;
 	}
- 
-	// Search for node holding value = "right" in the list.
-	Node<T>* PrevRight = NULL;
-	Node<T>* CurrentRight = Head;
-	while (CurrentRight && CurrentRight->Data != right)
-	{
-		PrevRight = CurrentRight;
-		CurrentRight = CurrentRight->Next;
-	}
- 
-	// If either value was not found in the list, exit function.
-	if (CurrentLeft == nullptr || CurrentRight  == nullptr) return;
- 
-	// If "right" is not the head of the linked list.
-	if (PrevLeft != nullptr) PrevLeft->Next = CurrentRight;
-	// Else make "right" as new head.
-	else Head = CurrentRight;
- 
-	// If "left" is not head of linked list
-	if (PrevRight != nullptr) PrevRight->Next = CurrentLeft;
-	// Else make "left" as new head.
-	else Head = CurrentLeft;
- 
-	// Swap next pointers
-	Node<T>* Temp = CurrentRight->Next;
-	CurrentRight->Next = CurrentLeft->Next;
-	CurrentLeft->Next = Temp;
+    
+	T left_data = FindNodeSpecific(left)->Data;
+	T right_data = FindNodeSpecific(right)->Data;
+
+	// add new nodes
+	InsertAt(right, left_data);
+	InsertAt(left, right_data);
+
+	// delete old nodes
+	RemoveAt(right + 2);
+	RemoveAt(left + 1);
 }

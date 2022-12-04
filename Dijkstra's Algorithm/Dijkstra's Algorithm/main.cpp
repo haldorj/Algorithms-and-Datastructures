@@ -28,17 +28,39 @@
 // 8. Go back to step 4.
 // 9. Repeat this process until all the vertex are marked as visited. */
 
+void AStarExample()
+{
+	Graph graph;
+	
+	graph.InsertNodeAStar('S', 6.f);
+	graph.InsertNodeAStar('A', 5.f);
+	graph.InsertNodeAStar('B', 6.f);
+	graph.InsertNodeAStar('C', 7.f);
+	graph.InsertNodeAStar('D', 2.f);
+	graph.InsertNodeAStar('E', 1.f);
+	graph.InsertNodeAStar('G', 0.f);
 
-int main()
+	graph.InsertEdge('S', 'A', 1.f);
+	graph.InsertEdge('A', 'B', 1.f);
+	graph.InsertEdge('A', 'D', 3.f);
+	graph.InsertEdge('A', 'E', 8.f);
+	graph.InsertEdge('B', 'C', 1.f);
+	graph.InsertEdge('E', 'D', 1.f);
+	graph.InsertEdge('D', 'G', 2.f);
+
+	graph.AStar(graph.FindNode('S'), graph.FindNode('G'));
+}
+
+void DijkstraExample()
 {
 	Graph graph;
 
-	graph.InsertNode('A');
-	graph.InsertNode('B');
-	graph.InsertNode('C');
-	graph.InsertNode('D');
-	graph.InsertNode('E');
-	graph.InsertNode('F');
+	graph.InsertNodeDijkstra('A');
+	graph.InsertNodeDijkstra('B');
+	graph.InsertNodeDijkstra('C');
+	graph.InsertNodeDijkstra('D');
+	graph.InsertNodeDijkstra('E');
+	graph.InsertNodeDijkstra('F');
 
 	graph.InsertEdge('A', 'B', 2.f);
 	graph.InsertEdge('A', 'C', 4.f);
@@ -48,9 +70,12 @@ int main()
 	graph.InsertEdge('E', 'D', 2.f);
 	graph.InsertEdge('D', 'F', 1.f);
 	graph.InsertEdge('E', 'F', 5.f);
-	
-	graph.Dijkstra(graph.FindNode('A'), graph.FindNode('F'));
-	
-	std::cout << std::endl;
 
+	graph.Dijkstra(graph.FindNode('A'), graph.FindNode('F'));
+}
+
+int main()
+{
+	DijkstraExample();
+	AStarExample();
 }

@@ -52,27 +52,38 @@ int main()
     //int_link.SelectionSort(int_link);
     //int_link.BubbleSort(int_link);
     //int_link.MergeSort(int_link);
-    int_link.QuickSort(int_link);
-    //int_link.HeapSort(int_link);
+    //int_link.QuickSort(int_link);
+    int_link.HeapSort(int_link);
     std::cout << "Printing list after sorting: " << std::endl;
     int_link.PrintData();
 
     List<char> char_link;
+
+    char_link.IsEmpty();
+    
     char_link.AddToTail('C');
     char_link.AddToTail('X');
     char_link.AddToTail('E');
     char_link.AddToTail('B');
     char_link.AddToTail('A');
-    char_link.AddToTail('W');
+    char_link.AddToTail('Z');
+    char_link.AddToTail('Z');
+    char_link.AddToTail('Z');
+    char_link.AddToTail('A');
     
     char_link.PrintData();
+
+    char_link.IsEmpty();
     
     //char_link.SelectionSort(char_link);
     //char_link.BubbleSort(char_link);
     //char_link.MergeSort(char_link);
-    char_link.QuickSort(char_link);
-    //char_link.HeapSort(char_link);
+    //char_link.QuickSort(char_link);
+    char_link.HeapSort(char_link);
     std::cout << "Printing list after sorting: " << std::endl;
+    char_link.PrintData();
+
+    char_link.RemoveDuplicates();
     char_link.PrintData();
     
     char_link.LinearSearch(char_link, 'E');

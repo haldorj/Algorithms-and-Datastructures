@@ -1,2 +1,13 @@
 ﻿  main.cpp
-  Dijkstra's Algorithm.vcxproj -> C:\3 Semester\data structures and algorithms\W40\Dijkstra's Algorithm\x64\Debug\Dijkstra's Algorithm.exe
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\utility(247,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty1=float
+          ]
+C:\Users\haldo\OneDrive\Documents\GitHub\Algorithms-and-Datastructures\Dijkstra's Algorithm\Dijkstra's Algorithm\Graph.h(84): message : see reference to function template instantiation 'std::pair<float,Node *>::pair<int,Node*,0>(std::pair<int,Node *> &&) noexcept' being compiled
+C:\Users\haldo\OneDrive\Documents\GitHub\Algorithms-and-Datastructures\Dijkstra's Algorithm\Dijkstra's Algorithm\Graph.h(84): message : see reference to function template instantiation 'std::pair<float,Node *>::pair<int,Node*,0>(std::pair<int,Node *> &&) noexcept' being compiled
+  Dijkstra's Algorithm.vcxproj -> C:\Users\haldo\OneDrive\Documents\GitHub\Algorithms-and-Datastructures\Dijkstra's Algorithm\x64\Debug\Dijkstra's Algorithm.exe
