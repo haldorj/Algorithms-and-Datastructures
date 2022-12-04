@@ -1,12 +1,15 @@
 #include <iostream>
+#include <assert.h>
+
 #include "Node.h"
 #include "HashTable.h"
+#include "HashT_OpenAdressing.h"
 
 const int size = 10;
 
 int main()
 {
-    hash_table<int> hashTable;
+    open_adressing<int> hashTable;
 
     hashTable.InitializeHashTable();
     
@@ -16,9 +19,20 @@ int main()
     hashTable.Insert(11);
     hashTable.Insert(9);
     hashTable.Insert(7);
+    hashTable.Insert(10);
+    hashTable.Insert(12);
+    hashTable.Insert(99);
+    hashTable.Insert(16);
+    hashTable.Insert(32);
+
+    hashTable.PrintTable();
+    hashTable.Lookup(99);
+    hashTable.Delete(99);
+    hashTable.PrintTable();
+    
 
     hash_table<char> ChashTable;
-
+    
     ChashTable.InitializeHashTable();
     
     ChashTable.Insert('a');
@@ -27,12 +41,12 @@ int main()
     ChashTable.Insert('r');
     ChashTable.Insert('l');
     ChashTable.Insert('y');
-
+    
     ChashTable.Lookup('r');
     ChashTable.Lookup('y');
     
     hash_table<std::string> ShashTable;
-
+    
     ShashTable.InitializeHashTable();
     
     ShashTable.Insert("abc");
@@ -49,16 +63,16 @@ int main()
     hashTable.PrintTable();
     ChashTable.PrintTable();
     ShashTable.PrintTable();
-
+    
     ShashTable.Lookup("900");
     ShashTable.Lookup("lmao");
     ShashTable.Lookup("www");
     ShashTable.Lookup("lll");
-
+    
     // deleting element
     ShashTable.Delete("200");
     ShashTable.Delete("lll");
-
+    
     ShashTable.PrintTable();
     
     return 0;

@@ -143,11 +143,12 @@ void Graph::AStar(Node* start, Node* end)
 		node->Parent = nullptr;
 	}
 
-	start->m_FCost = 0;
+	start->m_DistanceFromStart = 0;
 
 	// Insert start in priority queue and set its distance as 0.
 	pq.push(std::make_pair(0, start));
 	start->m_DistanceFromStart = 0.f;
+	start->m_FCost = 0.f;
 	
 	while (!pq.empty())
 	{

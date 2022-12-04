@@ -5,41 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="556b18eb-fe9c-4e4f-8531-02d8f902a596" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Additional stuff/TemplateHash/TemplateHash/x64/Debug/vc142.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/TemplateHash/TemplateHash/x64/Debug/vc142.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Additional stuff/TemplateHash/TemplateHash/x64/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Additional stuff/TemplateHash/TemplateHash/x64/Debug/vc142.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BinarySearchTree/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BinarySearchTree/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySearchTree/BinaryTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/BinaryTree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySearchTree/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/BinarySearchTree.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/BinarySearchTree.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearchTree/x64/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.exe" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/BinarySearchTree.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/.vs/Dijkstra's Algorithm/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/.vs/Dijkstra's Algorithm/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/.vs/Dijkstra's Algorithm/v17/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/.vs/Dijkstra's Algorithm/v17/Browse.VC.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/Node.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/Node.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/CL.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/Dijkstra.c7af2cf8.tlog/link.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/Dijkstra's Algorithm/x64/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Dijkstra's Algorithm/x64/Debug/Dijkstra's Algorithm.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/List.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/List.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/SinglyLinkedList.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/SinglyLinkedList.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/SinglyLinkedList/x64/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/x64/Debug/SinglyLinkedList.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/x64/Debug/SinglyLinkedList.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SinglyLinkedList/x64/Debug/SinglyLinkedList.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SinglyLinkedList/x64/Debug/SinglyLinkedList.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +106,7 @@
       <workItem from="1669996451149" duration="5818000" />
       <workItem from="1670145400648" duration="198000" />
       <workItem from="1670149432772" duration="1653000" />
+      <workItem from="1670193460772" duration="927000" />
     </task>
     <servers />
   </component>

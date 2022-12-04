@@ -1,10 +1,10 @@
 ﻿#pragma once
-#include <assert.h>
+
 
 static const int table_size = 10;
+
 template<typename T>
 int HashFunction(T key);
-
 template<>
 int HashFunction<std::string>(std::string key);
 
