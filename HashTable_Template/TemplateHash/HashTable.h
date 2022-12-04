@@ -1,49 +1,57 @@
 ﻿#pragma once
+#include <assert.h>
+
+static const size_t table_size = 10;
 
 template <typename T>
 struct Node
 {
     T Data;
+    
     Node* Next;
 };
+
+template<typename T>
+int HashFunction(T key);
+
+template<>
+int HashFunction<std::string>(std::string key);
 
 template <typename T>
 class hash_table
 {
-    //size of table
-    static const size_t TABLE_SIZE = 10;
-
 public:
-    size_t HashFunction(T data);
     void InitializeHashTable();
     void PrintTable();
     bool Insert(T data);
-    Node<T>* Lookup(Node<T>* data);
-    Node<T>* Delete(Node<T>* data);
+    Node<T>* Lookup(Node<T>* node);
+    Node<T>* Delete(Node<T>* node);
     
     // Hashtable: Array of pointers
-    Node<T>* HashTable[TABLE_SIZE];
+    Node<T>* HashTable[table_size];
 };
 
-template <typename T>
-size_t hash_table<T>::HashFunction(T data)
+template<typename T>
+int HashFunction(T key)
 {
-    const size_t Size = sizeof(data); 
-    size_t HashValue = 0;
-    
-    for (size_t i = 0; i < Size; i++)
-    {
-        HashValue += data[i];
-        HashValue = (HashValue * data[i]) % TABLE_SIZE;
+    assert(std::is_arithmetic_v<T>);
+    return static_cast<int>(key) % table_size;
+}
+
+template<>
+int HashFunction<std::string>(std::string key) {
+    // if key is text, get sum of ascii values mod capacity
+    size_t sum{};
+    for (const char i : key) {
+        sum += static_cast<size_t>(i);
     }
-    
-    return HashValue;
+    return sum % table_size;
 }
 
 template <typename T>
 void hash_table<T>::InitializeHashTable()
 {
-    for (int i = 0; i < TABLE_SIZE; i++)
+    for (int i = 0; i < table_size; i++)
     {
         HashTable[i] = nullptr;
     }
@@ -53,7 +61,7 @@ template <typename T>
 void hash_table<T>::PrintTable()
 {
     std::cout << "START" << std::endl;
-    for (int i = 0; i < TABLE_SIZE; i++)
+    for (int i = 0; i < table_size; i++)
     {
         if (HashTable[i] == nullptr)
         {
@@ -79,9 +87,9 @@ void hash_table<T>::PrintTable()
 template <typename T>
 bool hash_table<T>::Insert(T data)
 {
-    if (data == NULL) return  false;
+    //if (data == nullptr) return false;
     // Get index by using hashfunc
-    size_t index = HashFunction(data);
+    size_t index = HashFunction<T>(data);
     // If index is occupied
     Node<T>* Temp = new Node<T>;
     Temp->Data = data;
