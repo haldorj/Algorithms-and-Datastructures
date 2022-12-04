@@ -6,15 +6,6 @@ const int size = 10;
 
 int main()
 {
-    // hash_table<std::string, std::string>* hashTable = new hash_table<std::string, std::string>;
-    //
-    // hashTable->Insert("Steven");
-    // hashTable->Insert("John");
-    // hashTable->Insert("Sara");
-    // hashTable->Insert("Stewart");
-    // hashTable->Insert("Johnny");
-    // hashTable->Insert("Karen");
-
     hash_table<int> hashTable;
 
     hashTable.InitializeHashTable();
@@ -36,6 +27,9 @@ int main()
     ChashTable.Insert('r');
     ChashTable.Insert('l');
     ChashTable.Insert('y');
+
+    ChashTable.Lookup('r');
+    ChashTable.Lookup('y');
     
     hash_table<std::string> ShashTable;
 
