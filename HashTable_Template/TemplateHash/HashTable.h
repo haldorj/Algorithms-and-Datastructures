@@ -7,15 +7,14 @@ template <typename T>
 struct Node
 {
     T Data;
-    
     Node* Next;
 };
 
 template<typename T>
-int HashFunction(T key);
+int HashFunction(T key, const int& table_size);
 
 template<>
-int HashFunction<std::string>(std::string key);
+int HashFunction<std::string>(std::string key, const int& table_size);
 
 template <typename T>
 class hash_table
@@ -32,15 +31,14 @@ public:
 };
 
 template<typename T>
-int HashFunction(T key)
+int HashFunction(T key, const int& table_size)
 {
     assert(std::is_arithmetic_v<T>);
     return static_cast<int>(key) % table_size;
 }
 
 template<>
-int HashFunction<std::string>(std::string key) {
-    // if key is text, get sum of ascii values mod capacity
+int HashFunction<std::string>(std::string key, const int& table_size) {
     size_t sum{};
     for (const char i : key) {
         sum += static_cast<size_t>(i);
@@ -87,16 +85,19 @@ void hash_table<T>::PrintTable()
 template <typename T>
 bool hash_table<T>::Insert(T data)
 {
-    //if (data == nullptr) return false;
-    // Get index by using hashfunc
-    size_t index = HashFunction<T>(data);
-    // If index is occupied
-    Node<T>* Temp = new Node<T>;
-    Temp->Data = data;
+    if (data)
+    {
+        // Get index by using hashfunction.
+        size_t index = HashFunction<T>(data, table_size);
+        // If index is occupied
+        Node<T>* Temp = new Node<T>;
+        Temp->Data = data;
     
-    Temp->Next = HashTable[index];
-    HashTable[index] = Temp;
-    return true;
+        Temp->Next = HashTable[index];
+        HashTable[index] = Temp;
+        return true;
+    }
+    return false;
 }
 
 template <typename T>

@@ -14,16 +14,16 @@ int main()
     // hashTable->Insert("Johnny");
     // hashTable->Insert("Karen");
 
-    hash_table<int>* hashTable = new hash_table<int>;
+    hash_table<int> hashTable;
 
-    hashTable->Insert(1423);
-    hashTable->Insert(685);
-    hashTable->Insert(111);
-    hashTable->Insert(323);
-    hashTable->Insert(999);
-    hashTable->Insert(123);
-
-    hashTable->PrintTable();
+    hashTable.Insert(55);
+    hashTable.Insert(123);
+    hashTable.Insert(23);
+    hashTable.Insert(11);
+    hashTable.Insert(9);
+    hashTable.Insert(7);
+    
+    hashTable.PrintTable();
     
     return 0;
 }
