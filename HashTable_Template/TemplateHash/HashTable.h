@@ -1,20 +1,12 @@
 ﻿#pragma once
 #include <assert.h>
 
-static const size_t table_size = 10;
-
-template <typename T>
-struct Node
-{
-    T Data;
-    Node* Next;
-};
-
+static const int table_size = 10;
 template<typename T>
-int HashFunction(T key, const int& table_size);
+int HashFunction(T key);
 
 template<>
-int HashFunction<std::string>(std::string key, const int& table_size);
+int HashFunction<std::string>(std::string key);
 
 template <typename T>
 class hash_table
@@ -22,25 +14,27 @@ class hash_table
 public:
     void InitializeHashTable();
     void PrintTable();
-    bool Insert(T data);
-    Node<T>* Lookup(Node<T>* node);
-    Node<T>* Delete(Node<T>* node);
+    void Insert(T data);
+    void Lookup(T data);
+    void Delete(T data);
     
     // Hashtable: Array of pointers
     Node<T>* HashTable[table_size];
 };
 
 template<typename T>
-int HashFunction(T key, const int& table_size)
+int HashFunction(T key)
 {
     assert(std::is_arithmetic_v<T>);
     return static_cast<int>(key) % table_size;
 }
 
 template<>
-int HashFunction<std::string>(std::string key, const int& table_size) {
-    size_t sum{};
-    for (const char i : key) {
+int HashFunction<std::string>(std::string key)
+{
+    int sum{};
+    for (const char i : key)
+    {
         sum += static_cast<size_t>(i);
     }
     return sum % table_size;
@@ -72,7 +66,7 @@ void hash_table<T>::PrintTable()
             Node<T>* Temp = HashTable[i];
             while (Temp != nullptr)
             {
-                std::cout << Temp->Data << " - ";
+                std::cout << " "<< Temp->Data << " -";
                 Temp = Temp->Next;
             }
             std::cout << std::endl;
@@ -83,56 +77,64 @@ void hash_table<T>::PrintTable()
 }
 
 template <typename T>
-bool hash_table<T>::Insert(T data)
+void hash_table<T>::Insert(T data)
 {
-    if (data)
-    {
-        // Get index by using hashfunction.
-        size_t index = HashFunction<T>(data, table_size);
-        // If index is occupied
-        Node<T>* Temp = new Node<T>;
-        Temp->Data = data;
+    // Get index by using hashfunction.
+    size_t index = HashFunction<T>(data);
+    // If index is occupied
+    Node<T>* Temp = new Node<T>;
+    Temp->Data = data;
     
-        Temp->Next = HashTable[index];
-        HashTable[index] = Temp;
-        return true;
-    }
-    return false;
+    Temp->Next = HashTable[index];
+    HashTable[index] = Temp;
 }
 
 template <typename T>
-Node<T>* hash_table<T>::Lookup(Node<T>* node)
+void hash_table<T>::Lookup(T data)
 {
-    int index = HashFunction(node->Data);
+    int element = 1;
+    size_t index = HashFunction(data);
     Node<T>* Temp = HashTable[index];
-    while (Temp != nullptr && Temp->Data != node->Data)
+    while (Temp != nullptr && Temp->Data != data)
     {
+        element++;
         Temp = Temp->Next;
     }
-    return Temp;
+    Temp->m_index = index;
+    Temp->m_element = element;
+
+    if (Temp == nullptr) std::cout << "Not Found" << std::endl;
+    else std::cout << "Found " << Temp->Data << " at index: " << Temp->m_index << " element number " << Temp->m_element << " in the list." << std::endl;
 }
 
 template <typename T>
-Node<T>* hash_table<T>::Delete(Node<T>* node)
+void hash_table<T>::Delete(T data)
 {
-    int index = HashFunction(node->Data);
-    T* Temp = HashTable[index];
-    T* Prev = nullptr;
+    int index = HashFunction(data);
+    Node<T>* Temp = HashTable[index];
+    Node<T>* Prev = nullptr;
     
-    while (Temp != nullptr && Temp->Data != node->Data)
+    while (Temp != nullptr && Temp->Data != data)
     {
         Prev = Temp;
         Temp = Temp->Next;
     }
-    if (Temp == nullptr) return nullptr;
+    if (Temp == nullptr)
+    {
+        std::cout << "Value " << data << " not in table." << std::endl;
+        return;
+    }
     if (Prev == nullptr)
     {
         // deleting the head
         HashTable[index] = Temp->Next;
+        
     }
     else
     {
         Prev->Next = Temp->Next;
     }
-    return Temp;
+
+    std::cout << "Deleting " << Temp->Data << "." << std::endl;
+    delete Temp;
 }
