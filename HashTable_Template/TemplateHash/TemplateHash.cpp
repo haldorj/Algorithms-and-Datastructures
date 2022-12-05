@@ -1,6 +1,7 @@
 #include <iostream>
 #include <assert.h>
 
+#include "Person.h"
 #include "Node.h"
 #include "HashTable.h"
 #include "HashT_OpenAdressing.h"
@@ -9,6 +10,21 @@ const int size = 10;
 
 int main()
 {
+    hash_table<Person> personTable{};
+    Person person1 = Person(42, "Seksi", 'A');
+    Person person2 = Person(26, "Haldor", 'H');
+    Person person3 = Person(24, "Thomas", 'T');
+    Person person4 = Person(22, "Ni", 'S');
+    
+    Person person5 = person1 + person4;
+    
+    personTable.Insert(person1);
+    personTable.Insert(person2);
+    
+    personTable.PrintTable();
+    
+    return 0;
+    
     open_adressing<int> hashTable;
 
     hashTable.InitializeHashTable();
@@ -74,6 +90,4 @@ int main()
     ShashTable.Delete("lll");
     
     ShashTable.PrintTable();
-    
-    return 0;
 }

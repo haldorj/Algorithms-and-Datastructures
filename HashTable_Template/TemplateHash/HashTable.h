@@ -7,6 +7,8 @@ template<typename T>
 int HashFunction(T key);
 template<>
 int HashFunction<std::string>(std::string key);
+template<>
+int HashFunction<Person>(Person key);
 
 template <typename T>
 class hash_table
@@ -38,6 +40,12 @@ int HashFunction<std::string>(std::string key)
         sum += static_cast<size_t>(i);
     }
     return sum % table_size;
+}
+
+template<>
+int HashFunction<Person>(Person key)
+{
+    return (key.Age) % table_size;
 }
 
 template <typename T>
